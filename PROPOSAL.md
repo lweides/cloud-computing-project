@@ -8,6 +8,7 @@ As our topic allows for various different points of focus, we explicitly outline
 - Communication between the microservices
   - Dynatrace PurePaths
 - Logs the microservices produce
+- Kubernetes monitoring (provided by Dynatrace)
 
 ### Installation of Dynatrace OneAgent in GKE
 We will setup Dynatrace OneAgent according to the following guide (provided by Dynatrace): [Setup Dynatrace in GKE](https://learn.dynatracelabs.com/workshops/kubernetes-gke/index.html#0)
