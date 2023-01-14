@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/foo")
+@Path("/message")
 public class Resource {
 
     private static final Logger LOG = Logger.getLogger(Resource.class);
