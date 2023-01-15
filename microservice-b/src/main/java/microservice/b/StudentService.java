@@ -1,7 +1,6 @@
 package microservice.b;
 
 import request.Request;
-import response.Response;
 
 import java.util.List;
 

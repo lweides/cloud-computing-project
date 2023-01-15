@@ -8,7 +8,6 @@ public class Response {
     private String matriculationNumber;
     private String name;
     private String comment;
-    private int statusCode;
 
     public Response() {
     }
@@ -43,13 +42,5 @@ public class Response {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
     }
 }
