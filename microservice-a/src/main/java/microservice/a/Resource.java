@@ -8,15 +8,12 @@ import request.Request;
 import response.Response;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/message")
+@Path("/api")
 public class Resource {
 
     private static final Logger LOG = Logger.getLogger(Resource.class);
@@ -26,7 +23,17 @@ public class Resource {
     @RestClient
     Forwarder forwarder;
 
+    @GET
+    @Path("/healthcheck")
+    public Response healthcheck(Request request) {
+        LOG.info(
+                "Received healthcheck request"
+        );
+        return new Response("healthcheck: microservice-a available");
+    }
+
     @POST
+    @Path("/message")
     public Response foo(Request request) throws JsonProcessingException {
         LOG.info(
             "Received request from client: " + MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(request)
