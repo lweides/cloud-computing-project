@@ -109,6 +109,14 @@
       <artifactId>spring-web</artifactId>
       <version>5.3.16</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-kubernetes</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-container-image-jib</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

@@ -63,11 +63,14 @@
       <artifactId>shared</artifactId>
       <version>1.0</version>
     </dependency>
-      <dependency>
-          <groupId>net.eusashead.hateoas</groupId>
-          <artifactId>spring-responseentitybuilder</artifactId>
-          <version>1.1.0.RELEASE</version>
-      </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-kubernetes</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-container-image-jib</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
