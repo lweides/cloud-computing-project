@@ -59,12 +59,19 @@ TODO Maven etc
 
 5. Build the docker image with the following command:
    ```console
-      docker build -f src/main/docker/Dockerfile.jvm -t quarkus/microservice-b-jvm .
+      docker build -f src/main/docker/Dockerfile.jvm -t <hub-user>/microservice-a:1.0.0 .
    ```
-6. Run `docker images|grep quarkus`
+6. Run `docker images|grep <hub-user>`
 
    ```console
-      quarkus/microservice-a-jvm                      latest    e3a2dc357a42   7 minutes ago   422MB
+      <hub-user>/microservice-a               1.0.0     e3a2dc357a42   7 min ago     422MB  422MB
+   ```
+
+7. Login to Docker Hub with `docker login`
+
+8. Push Docker container image to Docker Hub:
+   ```console
+      docker push <hub-user>/microservice-a:1.0.0
    ```
 
 7. Set the name of the image in the kubernetes.yml file:
@@ -75,7 +82,7 @@ TODO Maven etc
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: quarkus/microservice-a-jvm:latest #HERE
+          image: <hub-user>/microservice-a:1.0.0 #HERE
           imagePullPolicy: Always
           name: microservice-a
           ports:
@@ -89,14 +96,11 @@ TODO Maven etc
       kubectl apply -f target/kubernetes/kubernetes.yml
    ```
    
-9. You can see all your active deployments (in your current namespace) by executing:
-   ```console
-      kubectl get deployments
-   ```
+9. You can see all your active pods by executing `kubectl get pods`
 
    ```console
-      NAME             READY   UP-TO-DATE   AVAILABLE   AGE
-      microservice-a   0/1     1            0           71s
+      NAME                              READY   STATUS    RESTARTS   AGE
+      microservice-a-7c788bbf6c-6hv6d   1/1     Running   0          13s
    ```
 
 
