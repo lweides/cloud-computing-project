@@ -1,5 +1,11 @@
 # Microservice B #
 
-It forwards requests to Microservice C.
+Run the MySql Container:
+````
+cd docker && docker-compose up -d
+````
 
-## Setup ##
+Load dummy data into db:
+````
+./db_initializer.sh
+````

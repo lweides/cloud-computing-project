@@ -2,7 +2,6 @@ package microservice.b;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.RestResponse;
 import request.Request;
@@ -30,10 +29,6 @@ public class StudentResource {
     public StudentResource(StudentService studentService) {
         this.studentService = studentService;
     }
-
-    @Inject
-    @RestClient
-    Forwarder forwarder;
 
     @POST
     public RestResponse<Response> saveMessage(Request request) {
