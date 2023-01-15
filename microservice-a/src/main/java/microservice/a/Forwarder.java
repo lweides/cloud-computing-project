@@ -8,7 +8,7 @@ import request.Request;
 import response.Response;
 
 
-@Path("/save")
+@Path("/api/save")
 @RegisterRestClient
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
