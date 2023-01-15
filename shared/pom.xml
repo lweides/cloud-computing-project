@@ -13,5 +13,12 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>net.eusashead.hateoas</groupId>
+            <artifactId>spring-responseentitybuilder</artifactId>
+            <version>1.1.0.RELEASE</version>
+        </dependency>
+    </dependencies>
 
 </project>

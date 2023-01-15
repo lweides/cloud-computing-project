@@ -4,20 +4,43 @@ package response;
  * Response to the client.
  */
 public class Response {
-    private String message;
+    private Long id;
+    private String matriculationNumber;
+    private String name;
+    private String comment;
 
     public Response() {
-
-    }
-    public Response(String message) {
-        this.message = message;
     }
 
-    public String getMessage() {
-        return message;
+    public Long getId() {
+        return id;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMatriculationNumber() {
+        return matriculationNumber;
+    }
+
+    public void setMatriculationNumber(String matriculationNumber) {
+        this.matriculationNumber = matriculationNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

@@ -1,14 +1,33 @@
-package request;
+package microservice.b;
 
-/**
- * Request from the outside (i.e., the client) into the k8s cluster.
- */
-public class Request {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "students")
+public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "matriculation_number")
     private String matriculationNumber;
+
+    @Column
     private String name;
+
+    @Column
     private String comment;
 
-    public Request() {
+    public Student() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMatriculationNumber() {
