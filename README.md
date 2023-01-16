@@ -51,18 +51,18 @@ TODO Maven etc
 
 1. Switch to microservice-a directory
 
-2. Run the `mvn install` command
+2. Set property `quarkus.container-image.group` in file `application.properties` to the Docker Hub username
 
-3. Run the `mvn compile quarkus:dev` command
+3. Run the `mvn install` command
 
-4. Test connection using the following command:
+4. Run the `mvn compile quarkus:dev` command
+
+5. Test connection using the following command:
    ```console
-      curl http://localhost:8080/api/healthcheck
-   
-      {"headers":{},"body":"Microservice A available","statusCodeValue":200,"statusCode":"OK"}
-   ```
+   curl http://localhost:8080/api/healthcheck
 
-5. Set property `quarkus.container-image.group` in file `application.properties` to the Docker Hub username
+   {"headers":{},"body":"Microservice A available","statusCodeValue":200,"statusCode":"OK"}
+   ```
 
 6. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
 
@@ -116,18 +116,18 @@ TODO Maven etc
 
 1. Switch to microservice-b directory
 
-2. Run the `mvn install` command
+2. Set property `quarkus.container-image.group` in file `application.properties` to the Docker Hub username
 
-3. Run the `mvn compile quarkus:dev` command
+3. Run the `mvn install` command
 
-4. Test connection using the following command:
+4. Run the `mvn compile quarkus:dev` command
+
+5. Test connection using the following command:
    ```console
-      curl http://localhost:8081/api/healthcheck
-   
-      {"headers":{},"body":"Microservice B available","statusCodeValue":200,"statusCode":"OK"}
+   curl http://localhost:8081/api/healthcheck
+
+   {"headers":{},"body":"Microservice B available","statusCodeValue":200,"statusCode":"OK"}
    ```
-   
-5. Set property `quarkus.container-image.group` in file `application.properties` to the Docker Hub username   
 
 6. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
 
