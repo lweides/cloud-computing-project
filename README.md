@@ -57,7 +57,7 @@ TODO Maven etc
    ```console
       curl http://localhost:8080/api/healthcheck
    
-      {"message":"healthcheck: microservice-a available"}
+      {"headers":{},"body":"Microservice A available","statusCodeValue":200,"statusCode":"OK"}
    ```
 5. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
 
@@ -119,7 +119,7 @@ TODO Maven etc
       curl http://localhost:8080/api/healthcheck
    ```
    ```console
-      {"message":"healthcheck: microservice-a available"}
+      {"headers":{},"body":"Microservice A available","statusCodeValue":200,"statusCode":"OK"}
    ```
 
 
@@ -136,7 +136,7 @@ TODO Maven etc
    ```console
       curl http://localhost:8081/api/healthcheck
    
-      {"message":"healthcheck: microservice-b available"}
+      {"headers":{},"body":"Microservice B available","statusCodeValue":200,"statusCode":"OK"}
    ```
 5. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
 
@@ -201,7 +201,7 @@ TODO Maven etc
    curl http://localhost:8081/api/healthcheck
 ```
 ```console
-   {"message":"healthcheck: microservice-b available"}
+   {"headers":{},"body":"Microservice B available","statusCodeValue":200,"statusCode":"OK"}
 ```
 
 ### Microservice C ###

@@ -8,7 +8,10 @@ import request.Request;
 import response.Response;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -22,15 +25,6 @@ public class Resource {
     @Inject
     @RestClient
     Forwarder forwarder;
-
-    @GET
-    @Path("/healthcheck")
-    public Response healthcheck(Request request) {
-        LOG.info(
-                "Received healthcheck request"
-        );
-        return new Response("healthcheck: microservice-a available");
-    }
 
     @POST
     @Path("/message")

@@ -1,4 +1,4 @@
-package microservice.b;
+package microservice.a;
 
 
 import org.jboss.logging.Logger;
@@ -23,7 +23,7 @@ public class HealthCheckResource {
         LOG.info(
                 "Received healthcheck request"
         );
-        return ResponseEntity.ok("Microservice B available");
+        return ResponseEntity.ok("Microservice A available");
     }
 }
 
