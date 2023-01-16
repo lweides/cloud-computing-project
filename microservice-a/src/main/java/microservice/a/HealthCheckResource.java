@@ -19,11 +19,11 @@ public class HealthCheckResource {
 
     @GET
     @Path("/healthcheck")
-    public ResponseEntity<String> healthcheck(Request request) {
+    public String healthcheck(Request request) {
         LOG.info(
                 "Received healthcheck request"
         );
-        return ResponseEntity.ok("Microservice A available");
+        return "Microservice A available";
     }
 }
 
