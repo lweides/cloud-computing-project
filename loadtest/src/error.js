@@ -1,5 +1,5 @@
 import http from "k6/http";
-import { sleep, check } from "k6";
+import { check, sleep } from "k6";
 
 export const options = {
   stages: [
@@ -10,7 +10,7 @@ export const options = {
 };
 
 export default function() {
-  const res = http.get("http://host.docker.internal:8080/student");
-  check(res, { "status 200": r => r.status === 200 });
+  const res = http.get("http://host.docker.internal:8080/not-existing");
+  check(res, { "status 500": r => r.status === 500});
   sleep(1);
 }

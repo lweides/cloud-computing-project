@@ -10,7 +10,7 @@ export const options = {
 };
 
 export default function() {
-  const res = http.get("http://host.docker.internal:8080/student");
+  const res = http.get("http://host.docker.internal:8080/api/healthcheck");
   check(res, { "status 200": r => r.status === 200 });
   sleep(1);
 }
