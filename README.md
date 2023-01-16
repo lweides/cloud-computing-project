@@ -43,6 +43,8 @@ TODO Maven etc
 
 8. Pull this repository
 
+9. Dynatrace SaaS/Managed Account. Get your free SaaS trial [here](https://www.dynatrace.com/trial/).
+
 ## Setup ##
 
 ### Microservice A ###
@@ -57,42 +59,28 @@ TODO Maven etc
    ```console
       curl http://localhost:8080/api/healthcheck
    
-      {"message":"healthcheck: microservice-a available"}
+      {"headers":{},"body":"Microservice A available","statusCodeValue":200,"statusCode":"OK"}
    ```
-5. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
 
-6. Build the docker image with the following command:
+5. Set property `quarkus.container-image.group` in file `application.properties` to the Docker Hub username
+
+6. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
+
+7. Build the docker image with the following command:
    ```console
       docker build -f src/main/docker/Dockerfile.jvm -t <hub-user>/microservice-a:1.0.0 .
    ```
-7. Run `docker images|grep <hub-user>`
+8. Run `docker images|grep <hub-user>`
 
    ```console
       <hub-user>/microservice-a               1.0.0     e3a2dc357a42   7 min ago     422MB  422MB
    ```
 
-8. Login to Docker Hub with `docker login`
+9. Login to Docker Hub with `docker login`
 
-9. Push Docker container image to Docker Hub:
-   ```console
-      docker push <hub-user>/microservice-a:1.0.0
-   ```
-
-10. Set the name of the image in the generated kubernetes.yml file:
+10. Push Docker container image to Docker Hub:
     ```console
-             containers:
-         - env:
-             - name: KUBERNETES_NAMESPACE
-               valueFrom:
-                 fieldRef:
-                   fieldPath: metadata.namespace
-           image: <hub-user>/microservice-a:latest
-           imagePullPolicy: Always
-           name: microservice-a
-           ports:
-             - containerPort: 8080
-               name: http
-               protocol: TCP
+       docker push <hub-user>/microservice-a:1.0.0
     ```
 
 11. Apply the deployment to your Kubernetes cluster using:
@@ -119,7 +107,7 @@ TODO Maven etc
       curl http://localhost:8080/api/healthcheck
    ```
    ```console
-      {"message":"healthcheck: microservice-a available"}
+      {"headers":{},"body":"Microservice A available","statusCodeValue":200,"statusCode":"OK"}
    ```
 
 
@@ -136,15 +124,18 @@ TODO Maven etc
    ```console
       curl http://localhost:8081/api/healthcheck
    
-      {"message":"healthcheck: microservice-b available"}
+      {"headers":{},"body":"Microservice B available","statusCodeValue":200,"statusCode":"OK"}
    ```
-5. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
+   
+5. Set property `quarkus.container-image.group` in file `application.properties` to the Docker Hub username   
 
-6. Build the docker image with the following command:
+6. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
+
+7. Build the docker image with the following command:
    ```console
       docker build -f src/main/docker/Dockerfile.jvm -t <hub-user>/microservice-b:1.0.0 .
    ```
-7. Run `docker images|grep <hub-user>`
+8. Run `docker images|grep <hub-user>`
 
    ```console
       <hub-user>/microservice-a               1.0.0     e3a2dc357a42   7 min ago     422MB  422MB
@@ -152,28 +143,11 @@ TODO Maven etc
 
    ```
 
-8. Login to Docker Hub with `docker login`
+9. Login to Docker Hub with `docker login`
 
-9. Push Docker container image to Docker Hub:
-   ```console
-      docker push <hub-user>/microservice-a:1.0.0
-   ```
-
-10. Set the name of the image in the generated kubernetes.yml file:
+10. Push Docker container image to Docker Hub:
     ```console
-             containers:
-         - env:
-             - name: KUBERNETES_NAMESPACE
-               valueFrom:
-                 fieldRef:
-                   fieldPath: metadata.namespace
-           image: <hub-user>/microservice-b:latest
-           imagePullPolicy: Always
-           name: microservice-a
-           ports:
-             - containerPort: 8080
-               name: http
-               protocol: TCP
+       docker push <hub-user>/microservice-a:1.0.0
     ```
 
 11. Apply the deployment to your Kubernetes cluster using:
@@ -201,7 +175,14 @@ TODO Maven etc
    curl http://localhost:8081/api/healthcheck
 ```
 ```console
-   {"message":"healthcheck: microservice-b available"}
+   {"headers":{},"body":"Microservice B available","statusCodeValue":200,"statusCode":"OK"}
 ```
 
 ### Microservice C ###
+
+### Setup Dynatrace Monitoring ###
+
+1. Enable autoscaling
+
+2. In the Dynatrace application navigate to Deploy Dynatrace → Install OneAgent → Kubernetes / OpenShift and follow the described steps
+

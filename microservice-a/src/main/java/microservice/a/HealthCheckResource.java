@@ -1,8 +1,7 @@
-package microservice.b;
+package microservice.a;
 
 
 import org.jboss.logging.Logger;
-import org.jboss.resteasy.reactive.RestResponse;
 import org.springframework.http.ResponseEntity;
 import request.Request;
 
@@ -20,11 +19,11 @@ public class HealthCheckResource {
 
     @GET
     @Path("/healthcheck")
-    public RestResponse<String> healthcheck(Request request) {
+    public ResponseEntity<String> healthcheck(Request request) {
         LOG.info(
                 "Received healthcheck request"
         );
-        return RestResponse.ok("Microservice B available");
+        return ResponseEntity.ok("Microservice A available");
     }
 }
 

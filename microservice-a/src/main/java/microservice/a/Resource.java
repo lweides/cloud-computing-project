@@ -10,10 +10,11 @@ import response.Response;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/api")
+@Path("/student")
 public class Resource {
 
     private static final Logger LOG = Logger.getLogger(Resource.class);
@@ -23,25 +24,25 @@ public class Resource {
     @RestClient
     Forwarder forwarder;
 
-    @GET
-    @Path("/healthcheck")
-    public Response healthcheck(Request request) {
-        LOG.info(
-                "Received healthcheck request"
-        );
-        return new Response("healthcheck: microservice-a available");
-    }
-
     @POST
-    @Path("/message")
-    public Response foo(Request request) throws JsonProcessingException {
+    public Response create(Request request) throws JsonProcessingException {
         LOG.info(
-            "Received request from client: " + MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(request)
+            "Received POST request from client: " + MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(request)
         );
-        Response response = forwarder.forwardToB(request);
+        Response response = forwarder.forwardPostToB(request);
         LOG.info(
             "Received response from microservice b: " + MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(response)
         );
         return response;
+    }
+
+    @GET
+    public List<Response> get() throws JsonProcessingException {
+        LOG.info("Received GET request from client");
+        List<Response> responses = forwarder.forwardGetToB();
+        LOG.info(
+            "Received response from microservice b: " + MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(responses)
+        );
+        return responses;
     }
 }
