@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Random;
 
 @Singleton
-public class db {
+public class Db {
     List<Student> students;
 
-    public db() {
+    public Db() {
         students = new LinkedList<>();
     }
 
@@ -22,8 +22,8 @@ public class db {
         student.setName(request.getName());
         student.setMatriculationNumber(request.getMatriculationNumber());
 
-        Random random = new Random();
-        student.setId(random.nextLong());
+        int rand = (int)(Math.random()*100);
+        student.setId(Long.valueOf(rand));
 
         this.students.add(student);
 
