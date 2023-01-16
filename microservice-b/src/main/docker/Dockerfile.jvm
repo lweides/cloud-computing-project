@@ -7,7 +7,7 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.jvm -t quarkus/microservice-b-jvm .
+# docker build -f src/main/docker/Dockerfile.jvm -t <hub-user>/microservice-b:1.0.0 .
 #
 # Then run the container using:
 #
@@ -75,7 +75,7 @@
 #   accessed directly. (example: "foo.example.com,bar.example.com")
 #
 ###
-FROM --platform=linux/amd64 registry.access.redhat.com/ubi8/openjdk-11:1.14
+FROM --platform=linux/amd64 registry.access.redhat.com/ubi8/openjdk-17:latest
 
 ENV LANGUAGE='en_US:en'
 
