@@ -3,7 +3,7 @@ package microservice.b;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.logging.Logger;
-import org.springframework.http.ResponseEntity;
+import org.jboss.resteasy.reactive.RestResponse;
 import request.Request;
 import response.Response;
 
@@ -15,39 +15,28 @@ import java.util.List;
 
 @Path("/student")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class StudentResource {
     private static final Logger LOG = Logger.getLogger(StudentResource.class);
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    private final StudentService studentService;
+    private final Db db;
 
     @Inject
-    public StudentResource(StudentService studentService) {
-        this.studentService = studentService;
+    public StudentResource(Db db) {
+        this.db = db;
     }
 
     @POST
-    public ResponseEntity<Response> saveMessage(Request request) {
-        LOG.info("Received message for storage");
-        try {
-            Student student = studentService.saveStudent(request);
-            Response response = StudentMapper.toSingleResponse(student);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Student saveMessage(Request request) {
+        LOG.info("Received message for storage: " + request.getComment());
+        Student student = db.addNewStudent(request);
+        return student;
     }
 
     @GET
-    public ResponseEntity<List<Response>> listAllStudents() {
+    public List<Student> listAllStudents() {
         LOG.info("Received message to list all students");
-        try {
-            List<Student> students = studentService.listAllStudents();
-            List<Response> response = StudentMapper.toListResponse(students);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+            return db.listAllStudents();
     }
 }

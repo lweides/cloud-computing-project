@@ -1,22 +1,12 @@
 package microservice.b;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "students")
 public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "matriculation_number")
     private String matriculationNumber;
 
-    @Column
     private String name;
-
-    @Column
     private String comment;
 
     public Student() {
