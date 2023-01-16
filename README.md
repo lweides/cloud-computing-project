@@ -43,6 +43,8 @@ TODO Maven etc
 
 8. Pull this repository
 
+9. Dynatrace SaaS/Managed Account. Get your free SaaS trial [here](https://www.dynatrace.com/trial/).
+
 ## Setup ##
 
 ### Microservice A ###
@@ -205,3 +207,17 @@ TODO Maven etc
 ```
 
 ### Microservice C ###
+
+### Setup Dynatrace Monitoring ###
+
+1. Enable autoscaling
+
+2. In the Dynatrace application navigate to Deploy Dynatrace → Install OneAgent → Kubernetes / OpenShift and follow the described steps
+
+
+```console
+   kubectl create namespace dynatrace
+   kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.10.1/kubernetes.yaml
+   kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s
+   kubectl apply -f dynakube.yaml
+```
