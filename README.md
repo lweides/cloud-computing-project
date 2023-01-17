@@ -12,7 +12,15 @@ A helper project called shared serves as the purpose of defining a global commun
 In detail, the request and response classes for communication via REST across Microservice A and B are defined.
 
 ## Technologies ##
-TODO Maven etc
+1. Java
+2. Maven
+3. Quarkus
+4. K6
+5. Docker
+2. Kubernetes
+3. Git
+4. Dynatrace
+5. 
 
 ### High Level System Architecture ###
 ![Architecture of our K8s cluster](architecture.jpg "Architecture")
@@ -61,7 +69,7 @@ TODO Maven etc
    ```console
    curl http://localhost:8080/api/healthcheck
 
-   {"headers":{},"body":"Microservice A available","statusCodeValue":200,"statusCode":"OK"}
+   Microservice A available
    ```
 
 6. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
@@ -107,7 +115,7 @@ TODO Maven etc
       curl http://localhost:8080/api/healthcheck
    ```
    ```console
-      {"headers":{},"body":"Microservice A available","statusCodeValue":200,"statusCode":"OK"}
+      Microservice A available
    ```
 
 
@@ -126,7 +134,7 @@ TODO Maven etc
    ```console
    curl http://localhost:8081/api/healthcheck
 
-   {"headers":{},"body":"Microservice B available","statusCodeValue":200,"statusCode":"OK"}
+   Microservice B available
    ```
 
 6. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
@@ -175,14 +183,27 @@ TODO Maven etc
    curl http://localhost:8081/api/healthcheck
 ```
 ```console
-   {"headers":{},"body":"Microservice B available","statusCodeValue":200,"statusCode":"OK"}
+   Microservice B available
 ```
-
-### Microservice C ###
 
 ### Setup Dynatrace Monitoring ###
 
-1. Enable autoscaling
+1. In the Dynatrace application navigate to Deploy Dynatrace → Install OneAgent → Kubernetes / OpenShift and follow the described steps
 
-2. In the Dynatrace application navigate to Deploy Dynatrace → Install OneAgent → Kubernetes / OpenShift and follow the described steps
 
+### Loadtests ###
+Used to simulate load on the k8s cluster to create traces, logs and more, which can be visualized using Dynatrace.
+
+1. Install `k6`: See [https://k6.io/docs/get-started/installation/](here)
+
+2. Run `k6` (assuming having installed `k6` docker): `docker run --rm -i grafana/k6 run - < some-file.js`
+
+### Observe Data in Dynatrace ###
+
+1. Observe k8s workloads (deployments, services, pods). See [https://www.dynatrace.com/support/help/how-to-use-dynatrace/infrastructure-monitoring/container-platform-monitoring/kubernetes-monitoring](Dynatrace Kubernetes monitoring)
+
+2. View logs of the deployed microservices. See [https://www.dynatrace.com/support/help/how-to-use-dynatrace/log-monitoring/analyze-log-data/log-viewer](Dynatrace log monitoring)
+
+3. Take a look at the distributed traces. See [https://www.dynatrace.com/support/help/how-to-use-dynatrace/diagnostics/diagnostic-distributed-traces](Dynatrace distributed traces)
+
+## Lessons learned ##
