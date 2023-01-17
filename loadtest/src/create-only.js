@@ -13,11 +13,11 @@ let i = 0;
 
 export default function() {
   const body = {
-    "matriculationNumber": "k12345678" + i, // makes matriculation number unique
+    "matriculationNumber": "k12345678",
     "name": "foo",
     "comment": "bar"
   };
-  const res = http.post("http://host.docker.internal:8080/student", body);
+  const res = http.post("http://host.docker.internal:8080/student", JSON.stringify(body));
   check(res, { "status 200": r => r.status === 200 });
   sleep(1);
   i++;
