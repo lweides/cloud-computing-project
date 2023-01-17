@@ -20,11 +20,11 @@ public class HealthCheckResource {
 
     @GET
     @Path("/healthcheck")
-    public RestResponse<String> healthcheck(Request request) {
+    public String healthcheck(Request request) {
         LOG.info(
                 "Received healthcheck request"
         );
-        return RestResponse.ok("Microservice B available");
+        return "Microservice B available";
     }
 }
 
