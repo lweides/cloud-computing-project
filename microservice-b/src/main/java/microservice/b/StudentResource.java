@@ -3,9 +3,7 @@ package microservice.b;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.logging.Logger;
-import org.jboss.resteasy.reactive.RestResponse;
 import request.Request;
-import response.Response;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -13,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 
-@Path("/student")
+@Path("/storage/student")
 @Produces(MediaType.APPLICATION_JSON)
 public class StudentResource {
     private static final Logger LOG = Logger.getLogger(StudentResource.class);
@@ -37,6 +35,6 @@ public class StudentResource {
     @GET
     public List<Student> listAllStudents() {
         LOG.info("Received message to list all students");
-            return db.listAllStudents();
+        return db.listAllStudents();
     }
 }
