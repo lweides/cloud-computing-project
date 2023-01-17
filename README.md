@@ -1,15 +1,14 @@
 # Documentation #
+This project is about setting up a kubernetes cluster and observe the cluster with Dynatrace.
+The kubernetes cluster runs one node and multiple pods and is hosted on Google Kubernetes Engine (GKE).
+Two microservices - communicating between each other - are running on the K8s cluster.
+Dynatrace is used to monitor traces between microservices, logs, metrics and the health of the K8s cluster.
 
 ## Structure ##
-The entire project consists of three different microservices:
- - Microservice A
- - Microservice B
- - Microservice C
-
-TODO: Microservices Zuständigkeiten erklären - Was machen sie
-
+The project consists of two different microservices (microservice-a and microservice-b) and a load test.
 A helper project called shared serves as the purpose of defining a global communication standard.
 In detail, the request and response classes for communication via REST across Microservice A and B are defined.
+To generate load in order to observe data with Dynatrace a load test is implemented using k6.
 
 ## Technologies ##
 1. Java
@@ -17,13 +16,12 @@ In detail, the request and response classes for communication via REST across Mi
 3. Quarkus
 4. K6
 5. Docker
-2. Kubernetes
-3. Git
-4. Dynatrace
-5. 
+6. Kubernetes
+7. Git
+8. Dynatrace
 
-### High Level System Architecture ###
-![Architecture of our K8s cluster](architecture.jpg "Architecture")
+### System Architecture ###
+![Architecture of our K8s cluster](architecture-final.jpg "Architecture")
  
 ## Prerequisites ##
 
@@ -68,7 +66,9 @@ In detail, the request and response classes for communication via REST across Mi
 5. Test connection using the following command:
    ```console
    curl http://localhost:8080/api/healthcheck
-
+   ```
+   Output:
+   ```console
    Microservice A available
    ```
 
@@ -114,9 +114,10 @@ In detail, the request and response classes for communication via REST across Mi
    ```console
       curl http://localhost:8080/api/healthcheck
    ```
-   ```console
+    Output:
+    ```console
       Microservice A available
-   ```
+    ```
 
 
 
@@ -132,9 +133,11 @@ In detail, the request and response classes for communication via REST across Mi
 
 5. Test connection using the following command:
    ```console
-   curl http://localhost:8081/api/healthcheck
-
-   Microservice B available
+      curl http://localhost:8081/api/healthcheck
+   ```
+   Output:
+   ```console
+      Microservice A available
    ```
 
 6. Use the `mvn package -DskipTests` to build the application. It will generate a single JAR that contains all the classes of your application including its dependencies.
@@ -182,6 +185,7 @@ In detail, the request and response classes for communication via REST across Mi
 ```console
    curl http://localhost:8081/api/healthcheck
 ```
+   Output:
 ```console
    Microservice B available
 ```
@@ -206,4 +210,21 @@ Used to simulate load on the k8s cluster to create traces, logs and more, which 
 
 3. Take a look at the distributed traces. See [https://www.dynatrace.com/support/help/how-to-use-dynatrace/diagnostics/diagnostic-distributed-traces](Dynatrace distributed traces)
 
+4. Observe metrics created by Dynatrace. See [https://www.dynatrace.com/support/help/how-to-use-dynatrace/metrics](Dynatrace metrics)
+
 ## Lessons learned ##
+1. Setup of k8s cluster on GKE
+
+2. Creating microservices with Java Quarkus
+
+3. Instrumentation with Dynatrace on k8s cluster
+
+4. Dynatrace uses a lot of resources
+
+5. Learned how to generate k8s configurations (yml files) using the Quarkus framework
+
+6. Quite difficult to get a MySQL service properly running in k8s
+
+7. Difficulties when combining different technologies
+   - Spring and Quarkus
+   - MySQL, H2 on k8s
